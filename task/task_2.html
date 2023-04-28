@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task 2</title>
+</head>
+<body>
+	<style>
+		body{
+			color: #14213d;
+			background-color: #d8e2dc;
+		}
+		.main{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 20px;
+		}
+		.container{
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+	</style>
+	<div class="main">
+		<div class="title">
+			<p>Value 1</p>
+			<p>Value 2</p>
+			<p>Value 3</p>
+			<p>Value 4</p>
+			<p>Value 5</p>
+		</div>
+		<div class="container">
+			<input type="number" id="inp1" value="">
+			<input type="number" id="inp2" value="">
+			<input type="number" id="inp3" value="">
+			<input type="number" id="inp4" value="">
+			<input type="number" id="inp5" value="">			
+	</div>
+	</div>
+	<script>
+		/*Дано 5 елементів input. При введенні значення у якийсь із них необхідно автоматично заповнювати інші 
+		(усі попередні у спадному порядку(кожен попередній має значення на 1 менше за наступний), усі наступні на 1 більше 
+		(кожен наступне на 1 більше за попереднього)*/
+		function putValue(event){
+			if(event.target.tagName === 'INPUT'){
+				let input = event.target
+				let num = parseInt(input.value)
+				while(input.nextElementSibling){
+					input = input.nextElementSibling
+					input.value = ++num
+				}
+				while(input.previousElementSibling){
+					input = input.previousElementSibling
+					input.value = --num
+				}
+			}
+		}
+		document.querySelector('.container').oninput = putValue
+	</script>
+</body>
+</html>

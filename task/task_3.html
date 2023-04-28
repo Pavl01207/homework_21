@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 3</title>
+</head>
+
+<body>
+	<style>
+		.container{
+			display: flex;
+			font-size: 24px;
+			gap: 20px;
+		}
+		ol{
+			border: 2px solid royalblue;
+		}
+		li{
+			padding: 5px;
+		}
+		button{
+			align-self: end;
+			font-size: 20px;
+			padding: 5px;
+			text-transform: uppercase;
+			text-align: center;
+			background-color: rgba(65, 105, 225, 0.516);
+			border-radius: 5px;
+			border: 2px solid royalblue;
+			color: white;
+			cursor: pointer;
+		}
+		button:hover{
+			border: 2px solid white;
+			background-color: royalblue;
+		}
+		.odd{
+			color: red;
+			border: 2px solid red;
+		}
+		.odd{
+			color: red;
+			border: 2px solid red;
+		}
+		.couples{
+			color: green;
+			border: 2px solid green;
+		}
+	</style>
+	<div class="container"></div>
+	<script>
+		/*Дано 5 випадковим чином згенерованих нумерованих списків з рандомними числами (кількість елементів у списку випадкова від 1 до 10, 
+		елементи випадкові – від 1 до 100). При натисненні на кнопку нумеровані списки з парною кількістю елементів зафарбувати у зелений колір, 
+		інші у червоний.*/
+		class SomeList{
+			constructor(){
+				this.minLength = 1
+				this.maxLength = 10
+				this.minValueElem = 1
+				this.maxValueElem = 100
+			}
+			getRandom(min,max){
+				return min+Math.floor(Math.random()*(max-min+1))
+			}
+			makeArray(minLength,maxLength,minValueElem,maxValueElem){
+				let arr = []
+				let arrLength = this.getRandom(minLength,maxLength)
+				for(let i = 0; i < arrLength; i++){
+					let elem = this.getRandom(minValueElem,maxValueElem)
+					arr.push(elem)
+				}
+				return arr
+			}
+			makeList(arr){
+				const listOl = document.createElement('ol')
+				for(const el of arr){
+					const li = document.createElement('li')
+					li.innerText = el
+					listOl.append(li)
+				}
+				return listOl
+			}
+			checkList(){
+				if((this.list1.children).length%2) this.list1.classList.add('odd') 
+				else this.list1.classList.add('couples')
+				if((this.list2.children).length%2) this.list2.classList.add('odd') 
+				else this.list2.classList.add('couples')
+				if((this.list3.children).length%2) this.list3.classList.add('odd') 
+				else this.list3.classList.add('couples')
+				if ((this.list4.children).length%2) this.list4.classList.add('odd') 
+				else this.list4.classList.add('couples')
+				if ((this.list5.children).length%2) this.list5.classList.add('odd') 
+				else this.list5.classList.add('couples')
+			}
+			render(targetSelector){
+				const mainContainer = document.querySelector(targetSelector)
+				//
+				let arr1 = this.makeArray(this.minLength,this.maxLength,this.minValueElem,this.maxValueElem)
+				this.list1 = this.makeList(arr1)
+				mainContainer.append(this.list1)
+				let arr2 = this.makeArray(this.minLength,this.maxLength,this.minValueElem,this.maxValueElem)
+				this.list2 = this.makeList(arr2)
+				mainContainer.append(this.list2)
+				let arr3 = this.makeArray(this.minLength,this.maxLength,this.minValueElem,this.maxValueElem)
+				this.list3 = this.makeList(arr3)
+				mainContainer.append(this.list3)
+				let arr4 = this.makeArray(this.minLength,this.maxLength,this.minValueElem,this.maxValueElem)
+				this.list4 = this.makeList(arr4)
+				mainContainer.append(this.list4)
+				let arr5 = this.makeArray(this.minLength,this.maxLength,this.minValueElem,this.maxValueElem)
+				this.list5 = this.makeList(arr5)
+				mainContainer.append(this.list5)
+				//
+				const btn = document.createElement('button')
+				btn.innerText = 'Check'
+				btn.addEventListener('click',this.checkList.bind(this))
+				mainContainer.append(btn)
+			}
+		}
+		let table = new SomeList()
+		table.render('.container')
+	</script>
+</body>
+</html>

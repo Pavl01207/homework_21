@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 5</title>
+</head>
+<body>
+	<style>
+		.container{
+			padding-top: 50px;
+		}
+		form{
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			width: 500px;
+		}
+		label{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			text-transform: uppercase;
+		}
+		input{
+			padding: 5px;
+			border-radius: 3px;
+			background-color:#e9edc9;
+			font-size: 18px;
+			font-weight: 700;
+			font-family: "Raleway",serif;
+		}
+	</style>
+	<div class="container">
+		<form action="#">
+			<label>Вік<input type="number"></label>
+			<label>Зріст<input type="text"></label>
+			<label>Вага<input type="text"></label>
+			<label>Заробітна плата<input type="number"></label>
+			<label>Вага<input type="text"></label>
+			<label>Стаж<input type="text"></label>
+			<label>Номер відділу<input type="number"></label>
+			<label>Порядковий номер<input type="number"></label>
+		</form>
+	</div>
+	<script>
+	/*На формі вводять 7 числових значень (вік, зріст, вага, заробітна плата, стаж, номер відділу, порядковий номер). 
+	Додати подію обробки події click на форму і якщо клік на input, то автоматично замінювати значення його на 0.*/
+	function defaultValue(event){
+		if(event.target.tagName === 'INPUT'){
+			let input = event.target
+			input.placeholder = 0
+			input.style.backgroundColor = '#74c69d'
+		}
+	}
+	document.querySelector('form').addEventListener('click',defaultValue)
+</script>
+</body>
+</html>
